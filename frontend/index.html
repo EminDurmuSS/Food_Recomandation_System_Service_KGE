@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Recommender</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand">Smart Recipe Recommender</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4">Find Your Perfect Recipe</h2>
+                
+                <form id="recipe-form" class="row g-3">
+                    <!-- Cooking Method -->
+                    <div class="col-md-6">
+                        <label for="cooking-method" class="form-label">Cooking Method <small class="text-muted">(can be combined)</small></label>
+                        <select class="form-select" id="cooking-method" multiple size="5">
+                            <option value="oven">Oven (most common)</option>
+                            <option value="pan">Pan</option>
+                            <option value="pot">Pot</option>
+                            <option value="microwave">Microwave</option>
+                            <option value="air fryer">Air Fryer</option>
+                            <option value="barbecue">Barbecue</option>
+                            <option value="bread machine">Bread Machine</option>
+                            <option value="no cook">No Cook</option>
+                            <option value="pressure cooker">Pressure Cooker</option>
+                        </select>
+                        <small class="text-muted">Hold Ctrl/Cmd to select multiple methods</small>
+                    </div>
+
+                    <!-- Cuisine Region -->
+                    <div class="col-md-6">
+                        <label for="cuisine-region" class="form-label">Cuisine Region</label>
+                        <select class="form-select" id="cuisine-region" multiple size="6">
+                            <option value="North America">North America (most common)</option>
+                            <option value="Global">Global</option>
+                            <option value="Mediterranean Europe">Mediterranean Europe</option>
+                            <option value="Northern/Western Europe">Northern/Western Europe</option>
+                            <option value="Latin America">Latin America</option>
+                            <option value="East Asia">East Asia</option>
+                            <option value="South Asia">South Asia</option>
+                            <option value="Southeast Asia">Southeast Asia</option>
+                            <option value="Middle East & Anatolia">Middle East & Anatolia</option>
+                            <option value="Oceania">Oceania</option>
+                            <option value="Eastern Europe & Eurasia">Eastern Europe & Eurasia</option>
+                            <option value="Caribbean">Caribbean</option>
+                            <option value="Sub-Saharan Africa">Sub-Saharan Africa</option>
+                            <option value="East Asia, Southeast Asia">East Asia & Southeast Asia</option>
+                            <option value="Mediterranean Europe, Middle East & Anatolia">Mediterranean Europe & Middle East</option>
+                        </select>
+                    </div>
+
+                    <!-- Diet Types -->
+                    <div class="col-md-6">
+                        <label for="diet-types" class="form-label">Diet Types</label>
+                        <select class="form-select" id="diet-types" multiple size="6">
+                            <option value="Standard">Standard (most common)</option>
+                            <option value="Vegetarian">Vegetarian</option>
+                            <option value="Vegan">Vegan</option>
+                            <option value="Paleo">Paleo</option>
+                            <option value="Egg Free">Egg Free</option>
+                            <option value="Lactose Free">Lactose Free</option>
+                            <option value="Vegan,Egg Free">Vegan & Egg Free</option>
+                            <option value="Vegetarian,Egg Free">Vegetarian & Egg Free</option>
+                            <option value="Egg Free,Lactose Free">Egg & Lactose Free</option>
+                            <option value="Vegan,Lactose Free">Vegan & Lactose Free</option>
+                            <option value="Vegetarian,Lactose Free">Vegetarian & Lactose Free</option>
+                        </select>
+                    </div>
+
+                    <!-- Meal Types -->
+                    <div class="col-md-6">
+                        <label for="meal-types" class="form-label">Meal Types</label>
+                        <select class="form-select" id="meal-types" multiple size="6">
+                            <option value="dinner">Dinner</option>
+                            <option value="dessert">Dessert</option>
+                            <option value="starter">Starter</option>
+                            <option value="brunch">Brunch</option>
+                            <option value="breakfast">Breakfast</option>
+                            <option value="lunch">Lunch</option>
+                            <option value="drink">Drink</option>
+                            <option value="snack">Snack</option>
+                        </select>
+                    </div>
+
+                    <!-- Cook Time -->
+                    <div class="col-md-6">
+                        <label for="cook-time" class="form-label">Cooking Time</label>
+                        <select class="form-select" id="cook-time">
+                            <option value="">Any time</option>
+                            <option value="less than 15 Mins">Less than 15 minutes</option>
+                            <option value="less than 30 Mins">Less than 30 minutes</option>
+                            <option value="less than 60 Mins">Less than 1 hour</option>
+                            <option value="less than 4 Hours">Less than 4 hours</option>
+                            <option value="less than 6 Hours">Less than 6 hours</option>
+                            <option value="more than 6 Hours">More than 6 hours</option>
+                        </select>
+                    </div>
+
+                    <!-- Servings -->
+                    <div class="col-md-6">
+                        <label for="servings" class="form-label">Servings</label>
+                        <select class="form-select" id="servings">
+                            <option value="">Any servings</option>
+                            <option value="1-2">1-2 servings</option>
+                            <option value="3-4">3-4 servings (most common)</option>
+                            <option value="5-6">5-6 servings</option>
+                            <option value="7-8">7-8 servings</option>
+                            <option value="9-10">9-10 servings</option>
+                            <option value="11-12">11-12 servings</option>
+                            <option value="13-16">13-16 servings</option>
+                            <option value="17-20">17-20 servings</option>
+                            <option value="21-30">21-30 servings</option>
+                            <option value="31-40">31-40 servings</option>
+                            <option value="41-60">41-60 servings</option>
+                            <option value="61-100">61-100 servings</option>
+                            <option value="101+">101+ servings</option>
+                        </select>
+                    </div>
+
+                    <!-- Ingredients -->
+                    <div class="col-12">
+                        <label for="ingredients" class="form-label">Ingredients</label>
+                        <select class="form-select" id="ingredients" multiple size="5">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+
+                    <!-- Health Attributes -->
+                    <div class="col-12">
+                        <h4 class="mb-3">Nutrition Preferences</h4>
+                        <div class="row g-3">
+                            <!-- First Row -->
+                            <div class="col-md-3">
+                                <label class="form-label">Protein Level</label>
+                                <select class="form-select" id="protein-level" multiple size="3">
+                                    <option value="Low Protein">Low Protein</option>
+                                    <option value="Medium Protein">Medium Protein</option>
+                                    <option value="High Protein">High Protein</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label">Carb Level</label>
+                                <select class="form-select" id="carb-level" multiple size="3">
+                                    <option value="Low Carb">Low Carb</option>
+                                    <option value="Medium Carb">Medium Carb</option>
+                                    <option value="High Carb">High Carb</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label">Fat Level</label>
+                                <select class="form-select" id="fat-level" multiple size="3">
+                                    <option value="Low Fat">Low Fat</option>
+                                    <option value="Medium Fat">Medium Fat</option>
+                                    <option value="High Fat">High Fat</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label">Calorie Level</label>
+                                <select class="form-select" id="calorie-level" multiple size="3">
+                                    <option value="Low Calorie">Low Calorie</option>
+                                    <option value="Medium Calorie">Medium Calorie</option>
+                                    <option value="High Calorie">High Calorie</option>
+                                </select>
+                            </div>
+
+                            <!-- Second Row -->
+                            <div class="col-md-3">
+                                <label class="form-label">Cholesterol Level</label>
+                                <select class="form-select" id="cholesterol-level" multiple size="3">
+                                    <option value="Low Cholesterol">Low Cholesterol</option>
+                                    <option value="Medium Cholesterol">Medium Cholesterol</option>
+                                    <option value="High Cholesterol">High Cholesterol</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label">Sugar Level</label>
+                                <select class="form-select" id="sugar-level" multiple size="3">
+                                    <option value="Low Sugar">Low Sugar</option>
+                                    <option value="Medium Sugar">Medium Sugar</option>
+                                    <option value="High Sugar">High Sugar</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preference Weights -->
+                    <div class="col-12">
+                        <h4 class="mt-4">Preference Weights</h4>
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label for="weight-cooking">Cooking Method</label>
+                                <input type="range" class="form-range" id="weight-cooking" min="0" max="5" step="0.1" value="1">
+                                <span class="weight-value" id="weight-cooking-value">1.0</span>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="weight-cuisine">Cuisine</label>
+                                <input type="range" class="form-range" id="weight-cuisine" min="0" max="5" step="0.1" value="1">
+                                <span class="weight-value" id="weight-cuisine-value">1.0</span>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="weight-diet">Diet</label>
+                                <input type="range" class="form-range" id="weight-diet" min="0" max="5" step="0.1" value="1">
+                                <span class="weight-value" id="weight-diet-value">1.0</span>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="weight-ingredients">Ingredients</label>
+                                <input type="range" class="form-range" id="weight-ingredients" min="0" max="5" step="0.1" value="1">
+                                <span class="weight-value" id="weight-ingredients-value">1.0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results Configuration -->
+                    <div class="col-md-6">
+                        <label for="num-results" class="form-label">Number of Results</label>
+                        <input type="range" class="form-range" id="num-results" min="1" max="20" value="5">
+                        <span id="num-results-value">5 recipes</span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-check mt-4">
+                            <input class="form-check-input" type="checkbox" id="flexible-matching">
+                            <label class="form-check-label" for="flexible-matching">
+                                Flexible Matching (show more varied results)
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="col-12 text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Find Recipes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results-section" class="mt-4" style="display: none;">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title">Recommended Recipes</h3>
+                    <div id="recipe-list" class="list-group mt-3"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recipe Details Modal -->
+        <div class="modal fade" id="recipe-modal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Recipe Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body" id="recipe-details">
+                        <!-- Recipe details will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
